@@ -1,0 +1,78 @@
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  gap: 15px;
+}
+.addInput {
+  height: 50px;
+  padding: 10px;
+  border: solid 1px black;
+}
+.addItem {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5px;
+  align-items: center;
+}
+.menuItem {
+  height: 80vh;
+  border: solid 1px black;
+}
+.addMenu {
+  border: solid 1px black;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.menuImage {
+  height: 85%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  border-bottom: 1px solid black;
+}
+.menuInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+  margin: 10px 15px 0px 15px;
+  margin-bottom: 15px;
+  height: 5%;
+}
+button {
+  width: 100%;
+  height: 7%;
+  background-color: #dc3545;
+  color: white;
+  border: #dc3545;
+  letter-spacing: 2px;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.addButton {
+  height: 50px;
+  background-color: gray;
+  color: white;
+  border: #dc3545;
+  letter-spacing: 2px;
+  font-weight: 400;
+}
+
+@media screen and (max-width: 1220px) {
+  .addItem {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (max-width: 800px) {
+  .addItem {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

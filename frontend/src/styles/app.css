@@ -1,0 +1,20 @@
+.tabContainer {
+  display: flex;
+  gap: 5px;
+  padding: 5px;
+}
+.tabButton {
+  height: 50px;
+  background-color: black;
+  color: white;
+  border: black 1px solid;
+  cursor: pointer;
+}
+.tabButton:hover {
+  background-color: white;
+  color: black;
+}
+.tabButton.active {
+  background-color: #5cb85c;
+  color: black;
+}
