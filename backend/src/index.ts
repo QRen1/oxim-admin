@@ -1,4 +1,3 @@
-import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import "dotenv/config";
@@ -8,6 +7,7 @@ import menuRoutes from "../routes/menuRoutes";
 import deleteRoutes from "../routes/deleteRoutes";
 import cartRoutes from "../routes/cartRoutes";
 import purchaseRoutes from "../routes/purchaseRoutes";
+import express, { Request, Response } from "express";
 
 const app = express();
 app.use(express.json());
@@ -24,6 +24,10 @@ app.use("/menu", menuRoutes);
 app.use("/deleteMenuItem", deleteRoutes);
 app.use("/cart", cartRoutes);
 app.use("/purchases", purchaseRoutes);
+
+app.get("/health", async (req: Request, res: Response) => {
+  res.send({ message: "health OK!" });
+});
 
 const PORT = process.env.PORT || 7000;
 app.listen(PORT, () => {
