@@ -30,7 +30,7 @@ function MenuTab() {
     const fetchPurchases = async () => {
       try {
         const response = await axios.get<Purchase[]>(
-          "http://localhost:10000/purchases"
+          "http://localhost:7000/purchases"
         );
         setPurchases(response.data);
         setLoading(false);
@@ -44,7 +44,7 @@ function MenuTab() {
 
   const handleStatusChange = async (purchaseId: string, newStatus: string) => {
     try {
-      await axios.put(`http://localhost:10000/purchases/${purchaseId}`, {
+      await axios.put(`http://localhost:7000/purchases/${purchaseId}`, {
         status: newStatus,
       });
       setPurchases((prevPurchases) =>
