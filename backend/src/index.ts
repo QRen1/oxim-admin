@@ -29,7 +29,7 @@ app.get("/health", async (req: Request, res: Response) => {
   res.send({ message: "health OK!" });
 });
 
-const PORT = process.env.PORT || 7000;
+const PORT = process.env.PORT || 10000;
 app.listen(PORT, () => {
   console.log(`Server started on port ${PORT}`);
 });
