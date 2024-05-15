@@ -2,6 +2,8 @@ import { useState, ChangeEvent, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
 import "../styles/addItem.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function OrderTab() {
   const [file, setFile] = useState<File | null>(null);
@@ -28,8 +30,18 @@ export default function OrderTab() {
 
     axios
       .post("http://localhost:7000/upload", formData)
-      .then((res) => setImageUrl(res.data[0].imageUrl))
-      .catch((err) => console.error(err));
+      .then((res) => {
+        setImageUrl(res.data[0].imageUrl);
+        toast.success("Item uploaded successfully", {
+          position: "top-right",
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+        toast.error("Failed to upload item", {
+          position: "top-right",
+        });
+      });
   };
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -44,12 +56,18 @@ export default function OrderTab() {
       .delete(`http://localhost:7000/deleteMenuItem/${id}`)
       .then((res) => {
         console.log(res.data);
-        // Filter out the removed item from menuItems state
         setMenuItems(menuItems.filter((item) => item._id !== id));
+        toast.success("Item removed successfully", {
+          position: "top-right",
+        });
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error(err);
+        toast.error("Failed to remove item", {
+          position: "top-right",
+        });
+      });
   };
-
   // fetch image
   useEffect(() => {
     axios
@@ -69,17 +87,6 @@ export default function OrderTab() {
       })
       .catch((err) => console.error(err));
   }, []);
-
-  const addToCart = (menuItemId: string) => {
-    axios
-      .post("http://localhost:7000/cart/addToCart", { menuItemId })
-      .then((res) => {
-        console.log("Item added to cart:", res.data);
-        // Optionally, you can update the UI to reflect the added item in the cart
-      })
-      .catch((err) => console.error("Failed to add item to cart:", err));
-  };
-  // const [description, setDescription] = useState(false);
 
   return (
     <div className="all-container">
@@ -145,6 +152,7 @@ export default function OrderTab() {
           </div>
         ))}
       </div>
+      <ToastContainer />
     </div>
   );
 }

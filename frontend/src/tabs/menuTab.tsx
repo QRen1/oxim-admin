@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import "../styles/purchase.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 interface CartItem {
   itemId: string;
@@ -23,7 +25,6 @@ interface Purchase {
 function MenuTab() {
   const [purchases, setPurchases] = useState<Purchase[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchPurchases = async () => {
@@ -53,8 +54,17 @@ function MenuTab() {
             : purchase
         )
       );
+
+      // Show success toast notification
+      toast.success("Status updated successfully", {
+        position: "top-right",
+      });
     } catch (err) {
       console.error("Failed to update status", err);
+      // Show error toast notification
+      toast.error("Failed to update status", {
+        position: "top-right",
+      });
     }
   };
 
@@ -73,9 +83,6 @@ function MenuTab() {
     return <div>Loading...</div>;
   }
 
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
   function getStatusBackgroundColor(status: string): string {
     switch (status) {
       case "pending":
@@ -83,7 +90,7 @@ function MenuTab() {
       case "preparing":
         return "#7F7F00"; // yellow
       case "to be picked up":
-        return "#000066";
+        return "#000066y";
       case "completed":
         return "#14701E"; // green
       case "canceled":
@@ -168,6 +175,7 @@ function MenuTab() {
           </div>
         ))}
       </div>
+      <ToastContainer />
     </div>
   );
 }
