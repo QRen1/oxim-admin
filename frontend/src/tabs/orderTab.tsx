@@ -29,7 +29,7 @@ export default function OrderTab() {
     formData.append("name", name);
 
     axios
-      .post("http://localhost:7000/upload", formData)
+      .post("http://localhost:10000/upload", formData)
       .then((res) => {
         setImageUrl(res.data[0].imageUrl);
         toast.success("Item uploaded successfully", {
@@ -53,7 +53,7 @@ export default function OrderTab() {
   // delete item
   const handleRemoveItem = (id: string) => {
     axios
-      .delete(`http://localhost:7000/deleteMenuItem/${id}`)
+      .delete(`http://localhost:10000/deleteMenuItem/${id}`)
       .then((res) => {
         console.log(res.data);
         setMenuItems(menuItems.filter((item) => item._id !== id));
@@ -71,7 +71,7 @@ export default function OrderTab() {
   // fetch image
   useEffect(() => {
     axios
-      .get("http://localhost:7000/getImage")
+      .get("http://localhost:/getImage")
       .then((res) => {
         setMenuItems(res.data);
       })
@@ -81,7 +81,7 @@ export default function OrderTab() {
   // fetch other data like name, description, price
   useEffect(() => {
     axios
-      .get("http://localhost:7000/menu")
+      .get("http://localhost:10000/menu")
       .then((res) => {
         setMenuItems(res.data);
       })
