@@ -30,7 +30,7 @@ function MenuTab() {
     const fetchPurchases = async () => {
       try {
         const response = await axios.get<Purchase[]>(
-          "http://localhost:7000/purchases"
+          "https://dashboard.render.com/web/srv-cp26m121hbls739b7adg/purchases"
         );
         setPurchases(response.data);
         setLoading(false);
@@ -44,9 +44,12 @@ function MenuTab() {
 
   const handleStatusChange = async (purchaseId: string, newStatus: string) => {
     try {
-      await axios.put(`http://localhost:7000/purchases/${purchaseId}`, {
-        status: newStatus,
-      });
+      await axios.put(
+        `https://dashboard.render.com/web/srv-cp26m121hbls739b7adg/purchases/${purchaseId}`,
+        {
+          status: newStatus,
+        }
+      );
       setPurchases((prevPurchases) =>
         prevPurchases.map((purchase) =>
           purchase._id === purchaseId
