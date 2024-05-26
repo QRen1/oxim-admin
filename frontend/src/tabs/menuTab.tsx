@@ -30,7 +30,7 @@ function MenuTab() {
     const fetchPurchases = async () => {
       try {
         const response = await axios.get<Purchase[]>(
-          "https://dashboard.render.com/web/srv-cp26m121hbls739b7adg/purchases"
+          "https://oxim-admin1.onrender.com/purchases"
         );
         setPurchases(response.data);
         setLoading(false);
@@ -45,7 +45,7 @@ function MenuTab() {
   const handleStatusChange = async (purchaseId: string, newStatus: string) => {
     try {
       await axios.put(
-        `https://dashboard.render.com/web/srv-cp26m121hbls739b7adg/purchases/${purchaseId}`,
+        `https://oxim-admin1.onrender.com/purchases/${purchaseId}`,
         {
           status: newStatus,
         }

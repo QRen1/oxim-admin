@@ -29,10 +29,7 @@ export default function OrderTab() {
     formData.append("name", name);
 
     axios
-      .post(
-        "https://dashboard.render.com/web/srv-cp26m121hbls739b7adg/upload",
-        formData
-      )
+      .post("https://oxim-admin1.onrender.com/upload", formData)
       .then((res) => {
         setImageUrl(res.data[0].imageUrl);
         toast.success("Item uploaded successfully", {
@@ -56,9 +53,7 @@ export default function OrderTab() {
   // delete item
   const handleRemoveItem = (id: string) => {
     axios
-      .delete(
-        `https://dashboard.render.com/web/srv-cp26m121hbls739b7adg/deleteMenuItem/${id}`
-      )
+      .delete(`https://oxim-admin1.onrender.com/deleteMenuItem/${id}`)
       .then((res) => {
         console.log(res.data);
         setMenuItems(menuItems.filter((item) => item._id !== id));
@@ -76,7 +71,7 @@ export default function OrderTab() {
   // fetch image
   useEffect(() => {
     axios
-      .get("http://localhost:/getImage")
+      .get("https://oxim-admin1.onrender.com/getImage")
       .then((res) => {
         setMenuItems(res.data);
       })
@@ -86,7 +81,7 @@ export default function OrderTab() {
   // fetch other data like name, description, price
   useEffect(() => {
     axios
-      .get("https://dashboard.render.com/web/srv-cp26m121hbls739b7adg/menu")
+      .get("https://oxim-admin1.onrender.com/menu")
       .then((res) => {
         setMenuItems(res.data);
       })
